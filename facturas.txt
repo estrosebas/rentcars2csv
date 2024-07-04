@@ -1,0 +1,10 @@
+1,1,2024-01-08,500.0,Tarjeta de Credito
+2,2,2024-02-11,700.0,PayPal
+3,3,2024-03-06,300.0,Efectivo
+4,4,2024-04-16,1000.0,Transferencia Bancaria
+5,5,2024-05-08,600.0,Tarjeta de Credito
+6,6,2024-06-11,900.0,PayPal
+7,7,2024-07-16,1200.0,Efectivo
+8,8,2024-08-06,400.0,Transferencia Bancaria
+9,9,2024-09-11,800.0,Tarjeta de Credito
+10,10,2024-10-08,500.0,PayPal

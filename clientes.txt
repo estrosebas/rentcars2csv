@@ -1,0 +1,12 @@
+1,Juan Perez,Calle Falsa 123,12345,juan.perez@example.com,juan123,password123,false
+2,Ana Gomez,Avenida Siempre Viva 456,67890,ana.gomez@example.com,ana456,password456,false
+3,Carlos Ruiz,Plaza Mayor 789,11121,carlos.ruiz@example.com,carlos789,password789,false
+4,Lucia Fernandez,Calle del Sol 101,22232,lucia.fernandez@example.com,lucia012,password012,false
+5,Pedro Sanchez,Calle Luna 202,33343,pedro.sanchez@example.com,pedro345,password345,false
+6,Maria Rodriguez,Avenida Estrella 303,44454,maria.rodriguez@example.com,maria678,password678,false
+7,Luis Torres,Calle Mar 404,55565,luis.torres@example.com,luis901,password901,false
+8,Elena Morales,Avenida Rio 505,66676,elena.morales@example.com,elena234,password234,false
+9,Fernando Lopez,Plaza Sol 606,77787,fernando.lopez@example.com,fernando567,password567,false
+10,Sofia Martinez,Calle Viento 707,88898,sofia.martinez@example.com,sofia890,password890,false
+0,eduardo ,micasita123,465489,correo@correo.com,eduardo,eduardo,false
+0,usuariotest,usuariotest,0,usuariotest,usuariotest,usuariotest,false

@@ -1,0 +1,10 @@
+1,Toyota,Corolla,2020,ABC123,Ninguna
+2,Honda,Civic,2019,DEF456,Ninguna
+3,Ford,Focus,2018,GHI789,Edición Especial
+4,Chevrolet,Cruze,2017,JKL012,Ninguna
+5,Nissan,Altima,2016,MNO345,Edición Especial
+6,Hyundai,Elantra,2020,PQR678,Ninguna
+7,Volkswagen,Jetta,2019,STU901,Edición Especial
+8,Kia,Forte,2018,VWX234,Ninguna
+9,Subaru,Impreza,2017,YZA567,Edición Especial
+10,Mazda,3,2016,BCD890,Ninguna
