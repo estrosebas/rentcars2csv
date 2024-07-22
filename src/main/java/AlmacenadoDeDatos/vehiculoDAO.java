@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class vehiculoDAO implements VehiculoDAOInterface {
+
     private final String archivoVehiculos = "vehiculos.txt";
 
     @Override
@@ -78,9 +79,9 @@ public class vehiculoDAO implements VehiculoDAOInterface {
     }
 
     @Override
-    public boolean eliminar(int idVehiculo) {
+    public boolean eliminar(String matricula) {
         List<Vehiculo> vehiculos = obtenerTodosLosVehiculos();
-        boolean encontrado = vehiculos.removeIf(v -> v.getIdVehiculo() == idVehiculo);
+        boolean encontrado = vehiculos.removeIf(v -> v.getMatricula().equals(matricula));
 
         if (encontrado) {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoVehiculos))) {
@@ -99,11 +100,11 @@ public class vehiculoDAO implements VehiculoDAOInterface {
     }
 
     @Override
-    public Vehiculo buscarVehiculoPorId(int idVehiculo) {
+    public Vehiculo buscarVehiculoPorId(String matricula) {
         List<Vehiculo> vehiculos = obtenerTodosLosVehiculos();
 
         for (Vehiculo vehiculo : vehiculos) {
-            if (vehiculo.getIdVehiculo() == idVehiculo) {
+            if (vehiculo.getMatricula().equals(matricula)) {
                 return vehiculo;
             }
         }
@@ -112,12 +113,12 @@ public class vehiculoDAO implements VehiculoDAOInterface {
     }
 
     private String vehiculoToString(Vehiculo vehiculo) {
-        return vehiculo.getIdVehiculo() + "," +
-               vehiculo.getMarca() + "," +
-               vehiculo.getModelo() + "," +
-               vehiculo.getAño() + "," +
-               vehiculo.getMatricula() + "," +
-               vehiculo.getEspecial();
+        return vehiculo.getIdVehiculo() + ","
+                + vehiculo.getMarca() + ","
+                + vehiculo.getModelo() + ","
+                + vehiculo.getAño() + ","
+                + vehiculo.getMatricula() + ","
+                + vehiculo.getEspecial();
     }
 
     private Vehiculo stringToVehiculo(String linea) {

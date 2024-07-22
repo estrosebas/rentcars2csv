@@ -16,6 +16,6 @@ public interface VehiculoDAOInterface {
     boolean insertar(Vehiculo vehiculo);
     List<Vehiculo> obtenerTodosLosVehiculos();
     boolean modificar(Vehiculo vehiculo);
-    boolean eliminar(int idVehiculo);
-    Vehiculo buscarVehiculoPorId(int idVehiculo);
+    boolean eliminar(String matricula);
+    Vehiculo buscarVehiculoPorId(String matricula);
 }

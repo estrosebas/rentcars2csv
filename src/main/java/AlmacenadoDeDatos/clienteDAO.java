@@ -4,7 +4,6 @@
  */
 package AlmacenadoDeDatos;
 
-
 /**
  *
  * @author eduardo
@@ -69,33 +68,32 @@ public class clienteDAO implements ClienteDAOInterface {
     }
 
     @Override
-    public boolean eliminar(int idCliente) {
+    public boolean eliminar(String username) {
         List<Cliente> clientes = obtenerTodosLosClientes();
-        boolean encontrado = false;
+        boolean encontrado = clientes.removeIf(c -> c.getUser().equals(username));
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
-            for (Cliente c : clientes) {
-                if (c.getIdCliente() != idCliente) {
+        if (encontrado) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
+                for (Cliente c : clientes) {
                     bw.write(c.toCSV());
                     bw.newLine();
-                } else {
-                    encontrado = true;
                 }
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
         }
 
-        return encontrado;
+        return false;
     }
 
     @Override
-    public Cliente buscarClientePorId(int idCliente) {
+    public Cliente buscarClientePorId(String username) {
         List<Cliente> clientes = obtenerTodosLosClientes();
 
         for (Cliente cliente : clientes) {
-            if (cliente.getIdCliente() == idCliente) {
+            if (cliente.getUser().equals(username)) {
                 return cliente;
             }
         }

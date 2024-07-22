@@ -16,7 +16,7 @@ public interface ClienteDAOInterface {
     boolean insertar(Cliente cliente);
     List<Cliente> obtenerTodosLosClientes();
     boolean modificar(Cliente cliente);
-    boolean eliminar(int idCliente);
-    Cliente buscarClientePorId(int idCliente);
+    boolean eliminar(String idCliente);
+    Cliente buscarClientePorId(String username);
     Cliente autenticar(String username, String contrasena);
 }
