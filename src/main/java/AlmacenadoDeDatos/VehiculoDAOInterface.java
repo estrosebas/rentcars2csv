@@ -8,14 +8,18 @@ package AlmacenadoDeDatos;
  *
  * @author eduardo
  */
-
 import Objetos.Vehiculo;
 import java.util.List;
 
 public interface VehiculoDAOInterface {
+
     boolean insertar(Vehiculo vehiculo);
+
     List<Vehiculo> obtenerTodosLosVehiculos();
+
     boolean modificar(Vehiculo vehiculo);
+
     boolean eliminar(String matricula);
+
     Vehiculo buscarVehiculoPorId(String matricula);
 }

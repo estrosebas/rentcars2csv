@@ -67,7 +67,7 @@ public class reserva extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "marca", "modelo", "año", "matricula", "especial"
+                "id", "id cliente", "fecha inicio", "fecha fin", "costo", "estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -346,7 +346,7 @@ public class reserva extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        MenuPrincipal frame = new MenuPrincipal();
+        MenuAdmin frame = new MenuAdmin();
         frame.setVisible(true);
         this.setVisible(false);
 

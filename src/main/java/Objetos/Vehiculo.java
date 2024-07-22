@@ -33,6 +33,9 @@ public class Vehiculo {
         this.especial = especial;
     }
 
+    public Vehiculo() {
+    }
+
     
 
     public Vehiculo(String marca, String modelo, String matricula) {

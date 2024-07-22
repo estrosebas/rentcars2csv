@@ -7,6 +7,5 @@
 7,Luis Torres,Calle Mar 404,55565,luis.torres@example.com,luis901,password901,false
 8,Elena Morales,Avenida Rio 505,66676,elena.morales@example.com,elena234,password234,false
 9,Fernando Lopez,Plaza Sol 606,77787,fernando.lopez@example.com,fernando567,password567,false
-10,Sofia Martinez,Calle Viento 707,88898,sofia.martinez@example.com,sofia890,password890,false
-0,eduardo ,micasita123,465489,correo@correo.com,eduardo,eduardo,false
-0,usuariotest,usuariotest,0,usuariotest,usuariotest,usuariotest,false
+0,estro,estro,1212121,estro,estro,estro,false
+0,estrosebas,estrosebas,1231212,estrosebas,estrosebas,estrosebas,true

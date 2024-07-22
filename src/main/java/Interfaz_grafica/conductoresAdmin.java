@@ -8,6 +8,9 @@ package Interfaz_grafica;
  *
  * @author eduardo
  */
+import AlmacenadoDeDatos.ClienteDAOFactory;
+import AlmacenadoDeDatos.ClienteDAOFactoryImpl;
+import AlmacenadoDeDatos.ClienteDAOInterface;
 import AlmacenadoDeDatos.clienteDAO;
 import Objetos.Cliente;
 import java.awt.Color;
@@ -19,12 +22,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 
-public class conductores extends javax.swing.JFrame {
+public class conductoresAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form conductores
      */
-    public conductores() {
+    public conductoresAdmin() {
         initComponents();
         consultarconductores();
         setLocationRelativeTo(null);
@@ -151,7 +154,7 @@ public class conductores extends javax.swing.JFrame {
                         .addComponent(jButton3)))
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -172,100 +175,26 @@ public class conductores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        String usuario = JOptionPane.showInputDialog("Ingresa tu usuario:");
-        String contrasena = JOptionPane.showInputDialog("Ingresa tu contraseña:");
-        String nombre = JOptionPane.showInputDialog("Ingresa tu nombre:");
-        String direccion = JOptionPane.showInputDialog("Ingresa tu dirección:");
-        String telefonoStr = JOptionPane.showInputDialog("Ingresa tu número de teléfono:");
-        int ntelefono = Integer.parseInt(telefonoStr);
-        String correo = JOptionPane.showInputDialog("Ingresa tu correo:");
-
-        // Crear una instancia de Cliente
-        Cliente nuevoCliente = new Cliente(0, nombre, direccion, ntelefono, correo, usuario, contrasena, false);
-
-        // Crear una instancia de clienteDAO
-        clienteDAO dao = new clienteDAO();
-
-        // Intentar insertar el nuevo cliente en la base de datos
-        boolean exito = dao.insertar(nuevoCliente);
-
-        // Proporcionar retroalimentación al usuario
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "Registro exitoso");
-            consultarconductores();
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al registrar el cliente");
-        }
-
+        conductoresregistrar frame = new conductoresregistrar();
+        frame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String idClienteStr = JOptionPane.showInputDialog("Ingresa el ID del cliente a eliminar:");
-        int idCliente = Integer.parseInt(idClienteStr);
-
-        // Crear una instancia de clienteDAO
-        clienteDAO dao = new clienteDAO();
-
-        // Intentar eliminar el cliente de la base de datos
-        boolean exito = dao.eliminar(idCliente);
-
-        // Proporcionar retroalimentación al usuario
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente");
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al eliminar el cliente");
-        }
-        consultarconductores();
+        conductoreseliminar frame = new conductoreseliminar();
+        frame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String idClienteStr = JOptionPane.showInputDialog("Ingresa el ID del cliente a modificar:");
-        int idCliente = Integer.parseInt(idClienteStr);
-
-        // Crear una instancia de clienteDAO
-        clienteDAO dao = new clienteDAO();
-
-        // Buscar el cliente por ID
-        Cliente cliente = dao.buscarClientePorId(idCliente);
-
-        if (cliente != null) {
-            // Pedir nuevos datos al usuario
-            String nuevoNombre = JOptionPane.showInputDialog("Ingresa el nuevo nombre:", cliente.getNombre());
-            String nuevaDireccion = JOptionPane.showInputDialog("Ingresa la nueva dirección:", cliente.getDireccion());
-            String nuevoTelefonoStr = JOptionPane.showInputDialog("Ingresa el nuevo número de teléfono:", String.valueOf(cliente.getnTelefono()));
-            int nuevoTelefono = Integer.parseInt(nuevoTelefonoStr);
-            String nuevoCorreo = JOptionPane.showInputDialog("Ingresa el nuevo correo:", cliente.getCorreo());
-            String nuevoUsuario = JOptionPane.showInputDialog("Ingresa el nuevo usuario:", cliente.getUser());
-            String nuevaContrasena = JOptionPane.showInputDialog("Ingresa la nueva contraseña:", cliente.getContrasena());
-            boolean esAdmini = cliente.isEsAdmini(); // Suponiendo que el rol de administrador no se cambia
-
-            // Actualizar los datos del cliente
-            cliente.setNombre(nuevoNombre);
-            cliente.setDireccion(nuevaDireccion);
-            cliente.setnTelefono(nuevoTelefono);
-            cliente.setCorreo(nuevoCorreo);
-            cliente.setUser(nuevoUsuario);
-            cliente.setContrasena(nuevaContrasena);
-
-            // Intentar modificar el cliente en la base de datos
-            boolean exito = dao.modificar(cliente);
-
-            // Proporcionar retroalimentación al usuario
-            if (exito) {
-                JOptionPane.showMessageDialog(this, "Cliente modificado exitosamente");
-                consultarconductores();
-            } else {
-                JOptionPane.showMessageDialog(this, "Error al modificar el cliente");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Cliente no encontrado");
-        }
+        conductoresmodificar frame = new conductoresmodificar();
+        frame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
-        MenuPrincipal frame = new MenuPrincipal();
+        MenuAdmin frame = new MenuAdmin();
         frame.setVisible(true);
         this.setVisible(false);
         
@@ -288,26 +217,29 @@ public class conductores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(conductoresAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(conductoresAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(conductoresAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(conductores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(conductoresAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new conductores().setVisible(true);
+                new conductoresAdmin().setVisible(true);
             }
         });
     }
 
     void consultarconductores() {
-        clienteDAO cDAO = new clienteDAO();
+        ClienteDAOFactory factory = new ClienteDAOFactoryImpl();
+        ClienteDAOInterface cDAO = factory.createClienteDAO();
+
 
         // Obtener la lista de todos los distritos
         List<Cliente> listachof = cDAO.obtenerTodosLosClientes();

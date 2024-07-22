@@ -11,21 +11,11 @@ package Objetos;
 public class Cliente extends Usuario {
 
     private int idCliente;
-    private int idUsuario;
     private String nombre;
     private String direccion;
     private int nTelefono;
     private String correo;
-
-    public Cliente(int idCliente, int idUsuario, String nombre, String direccion, int nTelefono, String correo, String user, String contrasena, boolean esAdmini) {
-        super(user, contrasena, esAdmini);
-        this.idCliente = idCliente;
-        this.idUsuario = idUsuario;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.nTelefono = nTelefono;
-        this.correo = correo;
-    }
+    private boolean esAdmini;
 
     public Cliente(int idCliente, String nombre, String direccion, int nTelefono, String correo, String user, String contrasena, boolean esAdmini) {
         super(user, contrasena, esAdmini);
@@ -34,29 +24,17 @@ public class Cliente extends Usuario {
         this.direccion = direccion;
         this.nTelefono = nTelefono;
         this.correo = correo;
+        this.esAdmini = esAdmini;
     }
 
-    public Cliente(int idCliente, int idUsuario, String nombre, String direccion, int nTelefono, String correo) {
-        this.idCliente = idCliente;
-        this.idUsuario = idUsuario;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.nTelefono = nTelefono;
-        this.correo = correo;
+    // Otros constructores...
+
+    public boolean isEsAdmini() {
+        return esAdmini;
     }
 
-    public Cliente(int idUsuario, String nombre, String direccion, int nTelefono, String correo) {
-        this.idUsuario = idUsuario;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.nTelefono = nTelefono;
-        this.correo = correo;
-    }
-
-    public Cliente(int idCliente, String nombre) {
-        super();
-        this.idCliente = idCliente;
-        this.nombre = nombre;
+    public void setEsAdmini(boolean esAdmini) {
+        this.esAdmini = esAdmini;
     }
 
     public int getIdCliente() {
@@ -100,7 +78,7 @@ public class Cliente extends Usuario {
     }
 
     public String toCSV() {
-        return idCliente + "," + nombre + "," + direccion + "," + nTelefono + "," + correo + "," + user + "," + contrasena + "," + esAdmini;
+        return idCliente + "," + nombre + "," + direccion + "," + nTelefono + "," + correo + "," + getUser() + "," + getContrasena() + "," + esAdmini;
     }
 
     public static Cliente fromCSV(String csv) {
@@ -115,5 +93,10 @@ public class Cliente extends Usuario {
                 parts[6],
                 Boolean.parseBoolean(parts[7])
         );
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", direccion=" + direccion + ", nTelefono=" + nTelefono + ", correo=" + correo + ", esAdmini=" + esAdmini + '}';
     }
 }

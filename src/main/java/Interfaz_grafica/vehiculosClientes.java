@@ -8,6 +8,9 @@ package Interfaz_grafica;
  *
  * @author eduardo
  */
+import AlmacenadoDeDatos.VehiculoDAOFactory;
+import AlmacenadoDeDatos.VehiculoDAOFactoryImpl;
+import AlmacenadoDeDatos.VehiculoDAOInterface;
 import AlmacenadoDeDatos.clienteDAO;
 import AlmacenadoDeDatos.vehiculoDAO;
 import Objetos.Cliente;
@@ -21,12 +24,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 
-public class vehiculos extends javax.swing.JFrame {
+public class vehiculosClientes extends javax.swing.JFrame {
 
     /**
      * Creates new form conductores
      */
-    public vehiculos() {
+    public vehiculosClientes() {
         initComponents();
         consultarVehiculos();
         setLocationRelativeTo(null);
@@ -46,9 +49,6 @@ public class vehiculos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablacarros = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,27 +85,6 @@ public class vehiculos extends javax.swing.JFrame {
             tablacarros.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        jButton1.setText("registrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("modificar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         jButton4.setText("volver");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,15 +104,7 @@ public class vehiculos extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton4)))
@@ -146,15 +117,9 @@ public class vehiculos extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(jButton3)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,114 +133,15 @@ public class vehiculos extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        String marca = JOptionPane.showInputDialog("Ingresa la marca del vehículo:");
-        String modelo = JOptionPane.showInputDialog("Ingresa el modelo del vehículo:");
-        String año = JOptionPane.showInputDialog("Ingresa el año del vehículo:");
-        String matricula = JOptionPane.showInputDialog("Ingresa la matrícula del vehículo:");
-        String especial = JOptionPane.showInputDialog("¿El vehículo tiene alguna característica especial? (Sí/No):");
-
-// Crear una instancia de Vehiculo
-        Vehiculo nuevoVehiculo;
-
-        if (especial.equalsIgnoreCase("Sí")) {
-            String caracteristicaEspecial = JOptionPane.showInputDialog("Ingresa la característica especial del vehículo:");
-            nuevoVehiculo = new Vehiculo(marca, modelo, año, matricula, caracteristicaEspecial);
-        } else {
-            nuevoVehiculo = new Vehiculo(marca, modelo, año, matricula, "");
-        }
-
-// Crear una instancia de vehiculoDAO
-        vehiculoDAO dao = new vehiculoDAO();
-
-// Intentar insertar el nuevo vehículo en la base de datos
-        boolean exito = dao.insertar(nuevoVehiculo);
-
-// Proporcionar retroalimentación al usuario
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "Vehículo registrado exitosamente");
-            consultarVehiculos(); // Método para actualizar la tabla de vehículos después de la inserción
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al registrar el vehículo");
-        }
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String idVehiculoStr = JOptionPane.showInputDialog("Ingresa el ID del vehículo a eliminar:");
-        int idVehiculo = Integer.parseInt(idVehiculoStr);
-
-// Crear una instancia de vehiculoDAO
-        vehiculoDAO dao = new vehiculoDAO();
-
-// Intentar eliminar el vehículo de la base de datos
-        boolean exito = dao.eliminar(idVehiculo);
-
-// Proporcionar retroalimentación al usuario
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "Vehículo eliminado exitosamente");
-            consultarVehiculos(); // Método para actualizar la tabla de vehículos después de la eliminación
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al eliminar el vehículo");
-        }
- 
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String idVehiculoStr = JOptionPane.showInputDialog("Ingresa el ID del vehículo a modificar:");
-        int idVehiculo = Integer.parseInt(idVehiculoStr);
-
-// Crear una instancia de vehiculoDAO
-        vehiculoDAO dao = new vehiculoDAO();
-
-// Buscar el vehículo por ID
-        Vehiculo vehiculo = dao.buscarVehiculoPorId(idVehiculo);
-
-        if (vehiculo != null) {
-            // Pedir nuevos datos al usuario
-            String nuevaMarca = JOptionPane.showInputDialog("Ingresa la nueva marca:", vehiculo.getMarca());
-            String nuevoModelo = JOptionPane.showInputDialog("Ingresa el nuevo modelo:", vehiculo.getModelo());
-            String nuevoAño = JOptionPane.showInputDialog("Ingresa el nuevo año:", vehiculo.getAño());
-            String nuevaMatricula = JOptionPane.showInputDialog("Ingresa la nueva matrícula:", vehiculo.getMatricula());
-            String nuevaEspecial = JOptionPane.showInputDialog("¿El vehículo tiene alguna característica especial? (Sí/No):");
-
-            // Actualizar los datos del vehículo
-            vehiculo.setMarca(nuevaMarca);
-            vehiculo.setModelo(nuevoModelo);
-            vehiculo.setAño(nuevoAño);
-            vehiculo.setMatricula(nuevaMatricula);
-            if (nuevaEspecial.equalsIgnoreCase("Sí")) {
-                String nuevaCaracteristicaEspecial = JOptionPane.showInputDialog("Ingresa la nueva característica especial:", vehiculo.getEspecial());
-                vehiculo.setEspecial(nuevaCaracteristicaEspecial);
-            } else {
-                vehiculo.setEspecial("");
-            }
-
-            // Intentar modificar el vehículo en la base de datos
-            boolean exito = dao.modificar(vehiculo);
-
-            // Proporcionar retroalimentación al usuario
-            if (exito) {
-                JOptionPane.showMessageDialog(this, "Vehículo modificado exitosamente");
-                consultarVehiculos(); // Método para actualizar la tabla de vehículos después de la modificación
-            } else {
-                JOptionPane.showMessageDialog(this, "Error al modificar el vehículo");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Vehículo no encontrado");
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        MenuPrincipal frame = new MenuPrincipal();
+        MenuClientes frame = new MenuClientes();
         frame.setVisible(true);
         this.setVisible(false);
 
@@ -298,27 +164,34 @@ public class vehiculos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(vehiculos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vehiculosClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(vehiculos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vehiculosClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(vehiculos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vehiculosClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(vehiculos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vehiculosClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vehiculos().setVisible(true);
+                new vehiculosClientes().setVisible(true);
             }
         });
     }
 
     void consultarVehiculos() {
-        vehiculoDAO vDAO = new vehiculoDAO();
+         VehiculoDAOFactory factory = (VehiculoDAOFactory) new VehiculoDAOFactoryImpl();
+        VehiculoDAOInterface vDAO = factory.createVehiculoDAO();
 
         // Obtener la lista de todos los vehículos
         List<Vehiculo> listaVehiculos = vDAO.obtenerTodosLosVehiculos();
@@ -347,9 +220,6 @@ public class vehiculos extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

@@ -4,9 +4,12 @@
  */
 package com.develop.licencias;
 
+import AlmacenadoDeDatos.ClienteDAOInterface;
+import AlmacenadoDeDatos.clienteDAO;
 import Interfaz_grafica.login;
 import Objetos.*;
 import java.sql.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import java.util.Scanner;

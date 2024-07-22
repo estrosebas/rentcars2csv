@@ -1,4 +1,5 @@
 package Interfaz_grafica;
+
 /**
  *
  * @author eduardo
@@ -14,8 +15,6 @@ import java.io.IOException;
 import javax.swing.*;
 
 public class login extends javax.swing.JFrame {
-
-   
 
     public login() {
         initComponents();
@@ -145,11 +144,21 @@ public class login extends javax.swing.JFrame {
         Cliente cliente = dao.autenticar(usuario, contrasenaIngresada);
 
         if (cliente != null) {
-            JOptionPane.showMessageDialog(this, "Login exitoso. Bienvenido, " + cliente.getNombre());
-            // Redirigir al usuario a la pantalla principal o hacer cualquier otra acción necesaria
-            MenuPrincipal frame = new MenuPrincipal();
-            frame.setVisible(true);
-            this.setVisible(false);
+            System.out.println(cliente.isEsAdmini());
+
+            Boolean rol = cliente.isEsAdmini();
+            if (rol) {
+                JOptionPane.showMessageDialog(this, "Login exitoso. Bienvenido, administrador " + cliente.getNombre());
+                this.setVisible(false);
+                
+                MenuAdmin frame = new MenuAdmin();
+                frame.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Login exitoso. Bienvenido, cliente " + cliente.getNombre());
+                this.setVisible(false);
+                MenuClientes frame = new MenuClientes();
+                frame.setVisible(true);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
         }

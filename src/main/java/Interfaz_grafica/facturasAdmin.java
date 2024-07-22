@@ -24,12 +24,12 @@ import java.io.IOException;
 import java.sql.Date;
 import javax.swing.ImageIcon;
 
-public class facturas extends javax.swing.JFrame {
+public class facturasAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form conductores
      */
-    public facturas() {
+    public facturasAdmin() {
         initComponents();
         consultarFacturas();
         setLocationRelativeTo(null);
@@ -381,7 +381,7 @@ public class facturas extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        MenuPrincipal frame = new MenuPrincipal();
+        MenuAdmin frame = new MenuAdmin();
         frame.setVisible(true);
         this.setVisible(false);
 
@@ -404,14 +404,18 @@ public class facturas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(facturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(facturasAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(facturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(facturasAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(facturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(facturasAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(facturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(facturasAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -420,7 +424,7 @@ public class facturas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new facturas().setVisible(true);
+                new facturasAdmin().setVisible(true);
             }
         });
     }

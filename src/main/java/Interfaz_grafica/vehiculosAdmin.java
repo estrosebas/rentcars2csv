@@ -8,6 +8,9 @@ package Interfaz_grafica;
  *
  * @author eduardo
  */
+import AlmacenadoDeDatos.VehiculoDAOFactory;
+import AlmacenadoDeDatos.VehiculoDAOFactoryImpl;
+import AlmacenadoDeDatos.VehiculoDAOInterface;
 import AlmacenadoDeDatos.clienteDAO;
 import AlmacenadoDeDatos.vehiculoDAO;
 import Objetos.Cliente;
@@ -21,12 +24,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 
-public class vehiculos extends javax.swing.JFrame {
+public class vehiculosAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form conductores
      */
-    public vehiculos() {
+    public vehiculosAdmin() {
         initComponents();
         consultarVehiculos();
         setLocationRelativeTo(null);
@@ -175,107 +178,26 @@ public class vehiculos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        String marca = JOptionPane.showInputDialog("Ingresa la marca del vehículo:");
-        String modelo = JOptionPane.showInputDialog("Ingresa el modelo del vehículo:");
-        String año = JOptionPane.showInputDialog("Ingresa el año del vehículo:");
-        String matricula = JOptionPane.showInputDialog("Ingresa la matrícula del vehículo:");
-        String especial = JOptionPane.showInputDialog("¿El vehículo tiene alguna característica especial? (Sí/No):");
-
-// Crear una instancia de Vehiculo
-        Vehiculo nuevoVehiculo;
-
-        if (especial.equalsIgnoreCase("Sí")) {
-            String caracteristicaEspecial = JOptionPane.showInputDialog("Ingresa la característica especial del vehículo:");
-            nuevoVehiculo = new Vehiculo(marca, modelo, año, matricula, caracteristicaEspecial);
-        } else {
-            nuevoVehiculo = new Vehiculo(marca, modelo, año, matricula, "");
-        }
-
-// Crear una instancia de vehiculoDAO
-        vehiculoDAO dao = new vehiculoDAO();
-
-// Intentar insertar el nuevo vehículo en la base de datos
-        boolean exito = dao.insertar(nuevoVehiculo);
-
-// Proporcionar retroalimentación al usuario
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "Vehículo registrado exitosamente");
-            consultarVehiculos(); // Método para actualizar la tabla de vehículos después de la inserción
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al registrar el vehículo");
-        }
-
+        vehiculosregistrar frame = new vehiculosregistrar();
+        frame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String idVehiculoStr = JOptionPane.showInputDialog("Ingresa el ID del vehículo a eliminar:");
-        int idVehiculo = Integer.parseInt(idVehiculoStr);
-
-// Crear una instancia de vehiculoDAO
-        vehiculoDAO dao = new vehiculoDAO();
-
-// Intentar eliminar el vehículo de la base de datos
-        boolean exito = dao.eliminar(idVehiculo);
-
-// Proporcionar retroalimentación al usuario
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "Vehículo eliminado exitosamente");
-            consultarVehiculos(); // Método para actualizar la tabla de vehículos después de la eliminación
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al eliminar el vehículo");
-        }
- 
+        vehiculoseliminar frame = new vehiculoseliminar();
+        frame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String idVehiculoStr = JOptionPane.showInputDialog("Ingresa el ID del vehículo a modificar:");
-        int idVehiculo = Integer.parseInt(idVehiculoStr);
-
-// Crear una instancia de vehiculoDAO
-        vehiculoDAO dao = new vehiculoDAO();
-
-// Buscar el vehículo por ID
-        Vehiculo vehiculo = dao.buscarVehiculoPorId(idVehiculo);
-
-        if (vehiculo != null) {
-            // Pedir nuevos datos al usuario
-            String nuevaMarca = JOptionPane.showInputDialog("Ingresa la nueva marca:", vehiculo.getMarca());
-            String nuevoModelo = JOptionPane.showInputDialog("Ingresa el nuevo modelo:", vehiculo.getModelo());
-            String nuevoAño = JOptionPane.showInputDialog("Ingresa el nuevo año:", vehiculo.getAño());
-            String nuevaMatricula = JOptionPane.showInputDialog("Ingresa la nueva matrícula:", vehiculo.getMatricula());
-            String nuevaEspecial = JOptionPane.showInputDialog("¿El vehículo tiene alguna característica especial? (Sí/No):");
-
-            // Actualizar los datos del vehículo
-            vehiculo.setMarca(nuevaMarca);
-            vehiculo.setModelo(nuevoModelo);
-            vehiculo.setAño(nuevoAño);
-            vehiculo.setMatricula(nuevaMatricula);
-            if (nuevaEspecial.equalsIgnoreCase("Sí")) {
-                String nuevaCaracteristicaEspecial = JOptionPane.showInputDialog("Ingresa la nueva característica especial:", vehiculo.getEspecial());
-                vehiculo.setEspecial(nuevaCaracteristicaEspecial);
-            } else {
-                vehiculo.setEspecial("");
-            }
-
-            // Intentar modificar el vehículo en la base de datos
-            boolean exito = dao.modificar(vehiculo);
-
-            // Proporcionar retroalimentación al usuario
-            if (exito) {
-                JOptionPane.showMessageDialog(this, "Vehículo modificado exitosamente");
-                consultarVehiculos(); // Método para actualizar la tabla de vehículos después de la modificación
-            } else {
-                JOptionPane.showMessageDialog(this, "Error al modificar el vehículo");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Vehículo no encontrado");
-        }
+        vehiculosmodificar frame = new vehiculosmodificar();
+        frame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        MenuPrincipal frame = new MenuPrincipal();
+        MenuAdmin frame = new MenuAdmin();
         frame.setVisible(true);
         this.setVisible(false);
 
@@ -298,27 +220,30 @@ public class vehiculos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(vehiculos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vehiculosAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(vehiculos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vehiculosAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(vehiculos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vehiculosAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(vehiculos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vehiculosAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vehiculos().setVisible(true);
+                new vehiculosAdmin().setVisible(true);
             }
         });
     }
 
     void consultarVehiculos() {
-        vehiculoDAO vDAO = new vehiculoDAO();
+        VehiculoDAOFactory factory = (VehiculoDAOFactory) new VehiculoDAOFactoryImpl();
+        VehiculoDAOInterface vDAO = factory.createVehiculoDAO();
 
         // Obtener la lista de todos los vehículos
         List<Vehiculo> listaVehiculos = vDAO.obtenerTodosLosVehiculos();
